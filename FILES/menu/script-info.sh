@@ -17,7 +17,7 @@ echo -e "\nServices:
 
 Other:
 ------
-1) Timezone: Asia/Kuala_Lumpur
+1) Timezone: Asia/Jakarta
 2) IPv6 Disabled
 3) BBR+FQ
 4) UFW

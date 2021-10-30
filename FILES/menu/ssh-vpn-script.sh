@@ -92,8 +92,8 @@ function extend-user() {
   exp=$(date -d "${exp_new}" +"%d %b %Y")
 
   # Reserved for extend user
-  #  cd /etc/openvpn/easy-rsa/
-  #  EASYRSA_CERT_EXPIRE=$duration ./easyrsa build-client-full "$user" nopass
+  cd /etc/openvpn/easy-rsa/
+  echo yes | EASYRSA_CERT_EXPIRE=$duration ./easyrsa renew "$user" nopass
 
   clear
   echo -e "SSH & VPN User Information"

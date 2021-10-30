@@ -142,6 +142,7 @@ cp /etc/openvpn/easy-rsa/pki/issued/server.crt /etc/openvpn/key/
 cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/key/
 cp /etc/openvpn/easy-rsa/pki/dh.pem /etc/openvpn/key/
 cp /etc/openvpn/easy-rsa/pki/private/server.key /etc/openvpn/key/
+openvpn --genkey --secret /etc/openvpn/key/tc.key
 wget -qO /etc/openvpn/server-udp.conf "https://raw.githubusercontent.com/x-0-x/autoscript/main/FILES/openvpn/server-udp.conf"
 wget -qO /etc/openvpn/server-tcp.conf "https://raw.githubusercontent.com/x-0-x/autoscript/main/FILES/openvpn/server-tcp.conf"
 sed -i "s/#AUTOSTART="all"/AUTOSTART="all"/g" /etc/default/openvpn

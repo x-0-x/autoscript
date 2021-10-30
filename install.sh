@@ -135,6 +135,7 @@ cd /etc/openvpn/easy-rsa
 ./easyrsa --batch init-pki
 ./easyrsa --batch build-ca nopass
 ./easyrsa gen-dh
+EASYRSA_CRL_DAYS=3650 ./easyrsa gen-crl
 ./easyrsa build-server-full server nopass
 cd
 mkdir /etc/openvpn/key
@@ -142,6 +143,8 @@ cp /etc/openvpn/easy-rsa/pki/issued/server.crt /etc/openvpn/key/
 cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/key/
 cp /etc/openvpn/easy-rsa/pki/dh.pem /etc/openvpn/key/
 cp /etc/openvpn/easy-rsa/pki/private/server.key /etc/openvpn/key/
+cp /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn/key/
+chown nobody:nogroup /etc/openvpn/key/crl.pem
 openvpn --genkey --secret /etc/openvpn/key/tc.key
 echo "client
 dev tun

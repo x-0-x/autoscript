@@ -57,6 +57,12 @@ function delete-user() {
   echo -e ""
   if getent passwd $user >/dev/null 2>&1; then
     userdel $user
+    cd /etc/openvpn/easy-rsa/
+    ./easyrsa --batch revoke "$user"
+    EASYRSA_CRL_DAYS=3650 ./easyrsa gen-crl
+    rm -f /etc/openvpn/key/crl.pem
+    cp /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn/key/
+    chown nobody:nogroup /etc/openvpn/key/crl.pem
     echo -e "User '$user' deleted successfully."
     echo -e ""
   else
@@ -84,6 +90,10 @@ function extend-user() {
   chage -E $(date -d +${duration}days +%Y-%m-%d) $user
   exp_new=$(chage -l $user | grep "Account expires" | awk -F": " '{print $2}')
   exp=$(date -d "${exp_new}" +"%d %b %Y")
+
+  # Reserved for extend user
+  #  cd /etc/openvpn/easy-rsa/
+  #  EASYRSA_CERT_EXPIRE=$duration ./easyrsa build-client-full "$user" nopass
 
   clear
   echo -e "SSH & VPN User Information"

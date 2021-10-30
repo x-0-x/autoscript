@@ -15,7 +15,7 @@ function add-user() {
 	read -p "Duration (day) : " duration
 	useradd -e $(date -d +${duration}days +%Y-%m-%d) -s /bin/false -M $user
 	cd /etc/openvpn/easy-rsa/
-  EASYRSA_CERT_EXPIRE="$duration" ./easyrsa build-client-full "$client" nopass
+  EASYRSA_CERT_EXPIRE=$duration ./easyrsa build-client-full "$user" nopass
 	echo -e "$pass\n$pass\n"|passwd $user &> /dev/null
 
 	exp=$(date -d +${duration}days +"%d %b %Y")

@@ -43,7 +43,7 @@ apt upgrade -y
 apt autoremove -y
 
 # Set timezone
-ln -sf /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # Disable IPv6
 sysctl -w net.ipv6.conf.all.disable_ipv6=1
